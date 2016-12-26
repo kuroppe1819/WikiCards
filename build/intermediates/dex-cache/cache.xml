@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="89b8c7d3bfc674c9f088740b836d1a3b42ba9b48">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_82e3f126ecb19eb6420fdeb8a12f257803f66646\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_8d9ae011d5d90de0ee8b473b1ae4160d9d2fbdec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1108575c7dc7b7f5b378b3290ac90de81a9b8830">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-25.0.1_12976afddcbb853e78ed6f27f58ed5fcdd57c092\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.2.2\5b083e2a33225bc1c7b11678b7608e2bead4e417\rxjava-1.2.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5b083e2a33225bc1c7b11678b7608e2bead4e417">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\rxjava-1.2.2_b84753ce2c7690328fc40e42543d60f684c5f351\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1b2e49a5658a3e19c06d7670f308062bec0ca64c">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_c825ed6b58370dc0169c767b99e3521ab67480a8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.0.5-3\306c2e49fcf7f0f66470565db443bab97612fdea\kotlin-stdlib-1.0.5-3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="306c2e49fcf7f0f66470565db443bab97612fdea">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\kotlin-stdlib-1.0.5-3_f3b47ebb960e5326223ac25208835d51033c797b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_16a9b6951669c0a6e7c58f66f3ee3981b041c262\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\io.reactivex\rxandroid\1.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\io.reactivex-rxandroid-1.2.1_b79c8b0538a618327019cf8d3aa53c6326168279\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_48cd173d456e7f15a43f7f711cea92bead614657\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_39781419eca1fe0f91fa714769c0c21cfa4d74a0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-runtime\1.0.5-3\6c199a70673336eeaf1d5dff1e55a08a63151c36\kotlin-runtime-1.0.5-3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6c199a70673336eeaf1d5dff1e55a08a63151c36">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\kotlin-runtime-1.0.5-3_93ef226216e7c0dacd3432df9754bc69815bab96\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.4_c67852f503fb1e41eb7299094c4f1bb343050e12\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.11.0\840897fcd7223a8143f1d9b6f69714e7be34fd50\okio-1.11.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.11.0_a0e100beb76a3742b905aa0635f257f37bddd6a4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_c80c4b8ae6588da5e79c2b0dc51fef84114162dc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f83b00041ecfba705603fec40363416c7de69719">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_09b0e7f173b6deefbb5dcf2513c4d36e3d48bb3d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.1_2dbd682eda1f5f9414c4322cb6aacd88ace19431\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_7260dff04d1ca586702f1927d60c01d242f12395\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_542485b7d355500470f3445c5103545f1be4c55c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.5.0\4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83\okhttp-3.5.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b0bb6bfbecbdd42b97ff400af342bfe7f32bc83">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.5.0_b15ecfd638afb78b7de0549fd634754b663b0583\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.lorentzos.swipecards\library\1.0.9\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5448a69da935ad4e5a298423099c83818253d8d6">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.lorentzos.swipecards-library-1.0.9_e0a80e311ed06f9b41c3b34d2a2efa06e0ae1fcf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.0.1_5e701740b688a8af1a939e9b7efec8fcf0cd365d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_76c2c4cc9c44852595419e436af66caa89eb6880\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.1_00688e11f810a08d3bc12f86b5965c54d362b5ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_63cee55c0c7635d749920e919bafbd72424fe0f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.0.1_90491d092fc1203d03ec419d52090370543d9a11\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_1750d38dfa752ee37860834155b407d75fe920d6\classes.dex" />
+    </item>
+
+</items>
