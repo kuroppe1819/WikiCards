@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="89b8c7d3bfc674c9f088740b836d1a3b42ba9b48">
+        sha1="2d6e050c9e8ab01b00f09fd64f8f235ffce2b0f6">
         <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_82e3f126ecb19eb6420fdeb8a12f257803f66646\classes.dex" />
     </item>
     <item
@@ -135,6 +135,15 @@
         revision="25.0.2"
         sha1="f83b00041ecfba705603fec40363416c7de69719">
         <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_09b0e7f173b6deefbb5dcf2513c4d36e3d48bb3d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\org.jsoup\jsoup\1.9.2\5e3bda828a80c7a21dfbe2308d1755759c2fd7b4\jsoup-1.9.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5e3bda828a80c7a21dfbe2308d1755759c2fd7b4">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\jsoup-1.9.2_5157769c64573b795def060fd3a36ce7769f9598\classes.dex" />
     </item>
     <item
         is-multidex="true"

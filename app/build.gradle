@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.cookpad.android.licensetools'
 
 android {
     compileSdkVersion 25
@@ -39,6 +40,7 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'com.google.code.gson:gson:2.4'
+    compile 'org.jsoup:jsoup:1.9.2'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     compile project(':shared')
     compile project(':customtabs')
