@@ -15,17 +15,19 @@ import java.io.IOException
 import java.util.*
 
 class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
-    lateinit var titleList: ArrayList<String>
-    lateinit var getCategory: String
+    lateinit var idList: ArrayList<String>
+    lateinit var id: String
+    lateinit var title: String
+    lateinit var article: String
     var onRxCallback: RxCallbacks
 
     init {
         this.onRxCallback = onRxCallback
     }
 
-    private fun SettingBuilder(getCategory: String): HttpUrl {
+    private fun SettingBuilder(id: String): HttpUrl {
         val httpUri: HttpUrl
-        when (getCategory) {
+        when (id) {
             "title" -> {
                 httpUri = HttpUrl.Builder()
                         .scheme("https")
@@ -49,7 +51,7 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
                         .addQueryParameter("prop", "extracts")
                         .addEncodedQueryParameter("exintro", "")
                         .addEncodedQueryParameter("explaintext", "")
-                        .addQueryParameter("titles", getCategory)
+                        .addQueryParameter("pageids", id)
                         .addEncodedQueryParameter("utf8", "")
                         .build()
             }
@@ -60,17 +62,17 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
     private fun toArrayList(items: JSONArray): ArrayList<String> {
         val arrayList = ArrayList<String>()
         for (i in 0..items.length() - 1) {
-            arrayList.add(items.getJSONObject(i).get("title").toString())
+            arrayList.add(items.getJSONObject(i).get("id").toString())
         }
         return arrayList
     }
 
-    fun onHttpConnect(getCategory: String) {
-        this.getCategory = getCategory
+    fun onHttpConnect(id: String) {
+        this.id = id
         Observable
                 .create(Observable.OnSubscribe<Response> { subscriber ->
                     try {
-                        val wikiUrl = SettingBuilder(getCategory)
+                        val wikiUrl = SettingBuilder(id)
                         Log.d(TAG, wikiUrl.toString())
 
                         val request = Request.Builder()
@@ -96,8 +98,9 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
 
     override fun onCompleted() {
         Log.d(TAG, "onCompleted")
-        when (getCategory){
-            "title" -> onRxCallback.getTitleCompleted(titleList)
+        when (id) {
+            "title" -> onRxCallback.getTitleCompleted(idList)
+            else -> onRxCallback.getArticleCompleted(title, article)
         }
     }
 
@@ -107,14 +110,15 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
 
     override fun onNext(response: Response) {
         val responseJson = JSONObject(response.body().string())
-        when (getCategory){
-            "title" -> titleList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
+        when (id) {
+            "title" -> idList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
             else -> {
-                val article = responseJson
+                val pageData = responseJson
                         .getJSONObject("query")
                         .getJSONObject("pages")
-                        .getJSONObject("3450078")
-                        .get("extract")
+                        .getJSONObject(id)
+                title = pageData.get("title").toString()
+                article = pageData.get("extract").toString()
             }
         }
     }

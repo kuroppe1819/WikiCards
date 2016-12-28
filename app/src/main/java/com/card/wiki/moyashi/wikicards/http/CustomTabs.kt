@@ -40,7 +40,7 @@ class CustomTabs(activity: Activity, url: String) : ServiceConnectionCallback {
 
     init {
         this.activity = activity
-        this.url = url
+        this.url = "https://ja.wikipedia.org/wiki/${url}"
     }
 
     private fun bindCustomTabsService() {
