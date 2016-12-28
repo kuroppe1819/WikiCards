@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), RxCallbacks {
 //        val intent = Intent(this, LicenseActivity::class.java)
 //        startActivity(intent)
 
-        RxAndroid(this).onHttpConnect("仮面ライダーBLACK RX")
+        RxAndroid(this).onHttpConnect("ガーリッシュナンバー")
 
     }
 

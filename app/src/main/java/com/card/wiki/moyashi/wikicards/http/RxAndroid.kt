@@ -46,11 +46,11 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
                         .addPathSegments("w/api.php")
                         .addQueryParameter("format", "json")
                         .addQueryParameter("action", "query")
-                        .addQueryParameter("prop", "revisions")
+                        .addQueryParameter("prop", "extracts")
+                        .addEncodedQueryParameter("exintro", "")
+                        .addEncodedQueryParameter("explaintext", "")
                         .addQueryParameter("titles", getCategory)
                         .addEncodedQueryParameter("utf8", "")
-                        .addEncodedQueryParameter("rvprop", "content")
-                        .addEncodedQueryParameter("rvparse", "")
                         .build()
             }
         }
@@ -110,14 +110,11 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
         when (getCategory){
             "title" -> titleList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
             else -> {
-                val html = responseJson
+                val article = responseJson
                         .getJSONObject("query")
                         .getJSONObject("pages")
-                        .getJSONObject("12696")
-                        .getJSONArray("revisions")
-                        .get(0).toString()
-                val article = Jsoup.parse(html)
-                Log.d(TAG, article.getElementsByTag("p").first().toString())
+                        .getJSONObject("3450078")
+                        .get("extract")
             }
         }
     }
