@@ -1,0 +1,50 @@
+- artifact: com.android.support:+:+
+  name: Android Support Libraries
+  copyrightHolder: The Android Open Source Project
+  license: apache2
+- artifact: com.google.code.gson:gson:+
+  name: Gson
+  copyrightHolder: Google
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/google/gson
+- artifact: com.lorentzos.swipecards:library:+
+  name: Android FlingSwipe cards Library
+  copyrightHolder: Diolor
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/Diolor/Swipecards
+- artifact: com.squareup.okhttp3:okhttp:+
+  name: OkHttp
+  copyrightHolder: Square
+  license: apache2
+- artifact: com.squareup.okio:okio:+
+  name: Okio
+  copyrightHolder: Square
+  license: apache2
+- artifact: io.reactivex:rxandroid:+
+  name: RxAndroid
+  copyrightHolder: ReactiveX
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxAndroid
+- artifact: io.reactivex:rxjava:+
+  name: rxjava
+  copyrightHolder: ReactiveX
+  license: The Apache Software License, Version 2.0
+  licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.txt
+  url: https://github.com/ReactiveX/RxJava
+- artifact: org.jetbrains.kotlin:kotlin-runtime:+
+  name: kotlin-runtime
+  copyrightHolder: JetBrains
+  license: apache2
+- artifact: org.jetbrains.kotlin:kotlin-stdlib:+
+  name: kotlin-stdlib
+  copyrightHolder: JetBrains
+  license: apache2
+- artifact: org.jsoup:jsoup:+
+  name: jsoup
+  copyrightHolder: Open Source Initiative
+  license: The MIT License
+  licenseUrl: https://jsoup.org/license
+  url: https://jsoup.org/

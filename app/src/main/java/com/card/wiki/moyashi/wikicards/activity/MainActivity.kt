@@ -1,5 +1,6 @@
 package com.card.wiki.moyashi.wikicards.activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +20,11 @@ class MainActivity : AppCompatActivity(), RxCallbacks {
 //        customTabs.onWarmUp()
 //        customTabs.onStartUp()
 
-        RxAndroid(this).onHttpConnect("ガーリッシュナンバー")
+        /** LicenseActivityに遷移 **/
+//        val intent = Intent(this, LicenseActivity::class.java)
+//        startActivity(intent)
+
+        RxAndroid(this).onHttpConnect("仮面ライダーBLACK RX")
 
     }
 

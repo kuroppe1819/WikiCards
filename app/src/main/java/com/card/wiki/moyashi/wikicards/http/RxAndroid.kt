@@ -113,11 +113,11 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
                 val html = responseJson
                         .getJSONObject("query")
                         .getJSONObject("pages")
-                        .getJSONObject("3450078")
+                        .getJSONObject("12696")
                         .getJSONArray("revisions")
                         .get(0).toString()
                 val article = Jsoup.parse(html)
-                Log.d(TAG, article.getElementsByTag("p").first().text())
+                Log.d(TAG, article.getElementsByTag("p").first().toString())
             }
         }
     }
