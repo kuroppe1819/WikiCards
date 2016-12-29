@@ -2,12 +2,10 @@ package com.card.wiki.moyashi.wikicards.adapter
 
 import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageView
 import android.widget.TextView
 import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.http.ItemData
@@ -43,8 +41,6 @@ class CardsAdapter(arrayList : ArrayList<ItemData>, context : Context) : BaseAda
             view = inflater.inflate(R.layout.card_item, parent, false)
             holder.title = view.findViewById(R.id.titleText) as TextView
             holder.article = view.findViewById(R.id.articleText) as TextView
-            Log.d(TAG, position.toString())
-
             holder.title?.setText(textData.titleText)
             holder.article?.setText(textData.articleText)
         }
@@ -57,7 +53,6 @@ class CardsAdapter(arrayList : ArrayList<ItemData>, context : Context) : BaseAda
         private class viewHolder() {
             var title: TextView? = null
             var article: TextView? = null
-            var image: ImageView? = null
         }
     }
 }

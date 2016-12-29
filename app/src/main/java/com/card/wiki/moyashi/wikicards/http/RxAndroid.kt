@@ -1,6 +1,8 @@
 package com.card.wiki.moyashi.wikicards.http
 
+import android.app.Activity
 import android.util.Log
+import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
 import okhttp3.*
 import org.json.JSONArray
@@ -14,14 +16,18 @@ import rx.schedulers.Schedulers
 import java.io.IOException
 import java.util.*
 
-class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
+class RxAndroid() : Subscriber<Response>() {
     lateinit var idList: ArrayList<String>
     lateinit var id: String
     lateinit var title: String
     lateinit var article: String
-    var onRxCallback: RxCallbacks
+    var onRxCallback: RxCallbacks? = null
 
-    init {
+//    init {
+//        this.onRxCallback = onRxCallback
+//    }
+
+    fun setCallback(onRxCallback: RxCallbacks) {
         this.onRxCallback = onRxCallback
     }
 
@@ -38,7 +44,7 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
                         .addQueryParameter("list", "random")
                         .addQueryParameter("titles", "&utf8")
                         .addQueryParameter("rnnamespace", "0")
-                        .addQueryParameter("rnlimit", "5")
+                        .addQueryParameter("rnlimit", "25")
                         .build()
             }
             else -> {
@@ -99,8 +105,13 @@ class RxAndroid(onRxCallback: RxCallbacks) : Subscriber<Response>() {
     override fun onCompleted() {
         Log.d(TAG, "onCompleted")
         when (id) {
-            "title" -> onRxCallback.getTitleCompleted(idList)
-            else -> onRxCallback.getArticleCompleted(title, article)
+            "title" -> onRxCallback?.getTitleCompleted(idList)
+            else -> {
+                val itemData = ItemData()
+                itemData.titleText = title
+                itemData.articleText = article
+                onRxCallback?.getArticleCompleted(itemData)
+            }
         }
     }
 
