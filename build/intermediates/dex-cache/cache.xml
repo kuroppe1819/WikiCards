@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ad8c05da488811ffb88b8a763bd1c968e7f6ccde">
+        sha1="04fe08976df6acb1abc3f79bf5ec229c5cb40660">
         <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_82e3f126ecb19eb6420fdeb8a12f257803f66646\classes.dex" />
     </item>
     <item
@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="cc75416d6fdd54ab029b179aaed892c520fe776c">
+        sha1="ba448946d51ae98c024a8894d167d661d7731df5">
         <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_c825ed6b58370dc0169c767b99e3521ab67480a8\classes.dex" />
     </item>
     <item

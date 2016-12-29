@@ -41,9 +41,9 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
             /** クリック処理 **/
             flingContainer.setOnItemClickListener { itemPosition, dataObject ->
                 Log.d(TAG, "click")
-                val customTabs = CustomTabs(this, title)
-                customTabs.onWarmUp()
-                customTabs.onStartUp()
+//                val customTabs = CustomTabs(this, title)
+//                customTabs.onWarmUp()
+//                customTabs.onStartUp()
             }
             count++
             onHttpConnect(idList?.get(count) as String)
@@ -73,9 +73,9 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
     }
 
     override fun onRightCardExit(p0: Any?) {
-//        val customTabs = CustomTabs(this, title)
-//        customTabs.onWarmUp()
-//        customTabs.onStartUp()
+        val customTabs = CustomTabs(this, title)
+        customTabs.onWarmUp()
+        customTabs.onStartUp()
     }
 
     override fun onLeftCardExit(p0: Any?) {
