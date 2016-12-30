@@ -14,12 +14,12 @@ class Preferences(activity: Activity) {
         this.preferences = activity.getSharedPreferences("Preferences", Context.MODE_PRIVATE)
     }
 
-    fun onSaveCount(count: Int) {
-        preferences.edit().putInt("count", count).commit()
+    fun onSaveCount(count: Long) {
+        preferences.edit().putLong("count", count).commit()
     }
 
-    fun onGetCount(): Int{
-        return preferences.getInt("count", 0)
+    fun onGetCount(): Long{
+        return preferences.getLong("count", 0)
     }
 
     fun preferenseDelete() {

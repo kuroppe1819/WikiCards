@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
     private var cardsAdapter: CardsAdapter? = null
     private val itemList = ArrayList<ItemData>()
     private var title: String = ""
-    private var pageCount = 0
+    private var pageCount: Long = 0
 
     private fun onHttpConnect(id: String) {
         rx = RxAndroid()
