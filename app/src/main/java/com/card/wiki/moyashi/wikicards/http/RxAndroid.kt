@@ -44,7 +44,7 @@ class RxAndroid() : Subscriber<Response>() {
                         .addQueryParameter("list", "random")
                         .addQueryParameter("titles", "&utf8")
                         .addQueryParameter("rnnamespace", "0")
-                        .addQueryParameter("rnlimit", "25")
+                        .addQueryParameter("rnlimit", "5")
                         .build()
             }
             else -> {

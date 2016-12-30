@@ -4,23 +4,27 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
 import com.card.wiki.moyashi.wikicards.adapter.CardsAdapter
 import com.card.wiki.moyashi.wikicards.http.CustomTabs
 import com.card.wiki.moyashi.wikicards.http.ItemData
 import com.card.wiki.moyashi.wikicards.http.RxAndroid
+import com.card.wiki.moyashi.wikicards.preference.Preferences
 import com.lorentzos.flingswipe.SwipeFlingAdapterView
 import java.util.*
 
 @Suppress("CAST_NEVER_SUCCEEDS")
 class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener {
+    lateinit private var holder : viewHolder
     lateinit var rx: RxAndroid
+    lateinit var preferense : Preferences
     private var idList: ArrayList<String>? = null
     private var cardsAdapter: CardsAdapter? = null
     private val itemList = ArrayList<ItemData>()
     private var title: String = ""
-    private var count = 0
+    private var pageCount = 0
 
     private fun onHttpConnect(id: String) {
         rx = RxAndroid()
@@ -45,14 +49,24 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
 //                customTabs.onWarmUp()
 //                customTabs.onStartUp()
             }
-            count++
-            onHttpConnect(idList?.get(count) as String)
+            idList?.removeAt(0)
+            onHttpConnect(idList?.first() as String)
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        /** Countの呼び出し **/
+        preferense = Preferences(this)
+        pageCount = preferense.onGetCount()
+        Log.d(TAG, pageCount.toString())
+
+        /** textViewにCountをセット **/
+        holder = viewHolder()
+        holder.pageCount = findViewById(R.id.count_textview) as TextView
+        holder.pageCount?.setText(pageCount.toString())
 
         /** LicenseActivityに遷移 **/
         //        val intent = Intent(this, LicenseActivity::class.java)
@@ -64,7 +78,7 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
     override fun getTitleCompleted(idList: ArrayList<String>) {
         this.idList = idList
         idList.forEach { Log.d(TAG, it) }
-        onHttpConnect(idList.get(count))
+        onHttpConnect(idList.first())
     }
 
     override fun getArticleCompleted(itemData: ItemData) {
@@ -91,21 +105,31 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
     }
 
     override fun removeFirstObjectInAdapter() {
+        pageCount++
+        holder.pageCount?.setText(pageCount.toString())
+        Log.d(TAG, pageCount.toString())
         itemList.removeAt(0)
-        count++
-        Log.d(TAG, count.toString())
-        if (count + 1 == idList?.size) {
-            count = 0
+        idList?.removeAt(0)
+        if (idList?.size == 0) {
             onHttpConnect(TITLE)
             Log.d(TAG, "if")
         } else {
-            onHttpConnect(idList?.get(count) as String)
+            onHttpConnect(idList?.first() as String)
             Log.d(TAG, "else")
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        preferense.onSaveCount(pageCount)
     }
 
     companion object {
         private val TAG = "MainActivity"
         private val TITLE = "title"
+
+        private class viewHolder() {
+            var pageCount: TextView? = null
+        }
     }
 }
