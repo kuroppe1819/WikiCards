@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/menu_main"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_item1"
+            android:icon="@drawable/ic_double_card"
+            android:title="カード" />
+        <item
+            android:id="@+id/menu_item2"
+            android:icon="@android:drawable/star_off"
+            android:title="お気に入り" />
+    </group>
+
+    <group
+        android:id="@+id/menu_other"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_item3"
+            android:title="このアプリについて" />
+    </group>
+</menu>
