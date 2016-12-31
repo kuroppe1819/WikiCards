@@ -18,8 +18,16 @@ class Preferences(activity: Activity) {
         preferences.edit().putLong("count", count).commit()
     }
 
-    fun onGetCount(): Long{
+    fun onGetCount(): Long {
         return preferences.getLong("count", 0)
+    }
+
+    fun onSaveTitle(title: String){
+        preferences.edit().putString("title", title).commit()
+    }
+
+    fun onGetTitle(): String? {
+        return preferences.getString("title", "")
     }
 
     fun preferenseDelete() {
