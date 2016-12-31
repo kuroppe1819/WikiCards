@@ -4,6 +4,7 @@ import android.app.Activity
 import android.util.Log
 import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
+import com.card.wiki.moyashi.wikicards.parameter.ItemData
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
@@ -44,7 +45,7 @@ class RxAndroid() : Subscriber<Response>() {
                         .addQueryParameter("list", "random")
                         .addQueryParameter("titles", "&utf8")
                         .addQueryParameter("rnnamespace", "0")
-                        .addQueryParameter("rnlimit", "5")
+                        .addQueryParameter("rnlimit", "25")
                         .build()
             }
             else -> {

@@ -11,5 +11,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="16dp"
-        android:text="Wiki Cards !" />
+        android:text="WikiCards" />
 </RelativeLayout>

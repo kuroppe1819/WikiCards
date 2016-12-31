@@ -9,7 +9,7 @@ import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
 import com.card.wiki.moyashi.wikicards.adapter.CardsAdapter
 import com.card.wiki.moyashi.wikicards.http.CustomTabs
-import com.card.wiki.moyashi.wikicards.http.ItemData
+import com.card.wiki.moyashi.wikicards.parameter.ItemData
 import com.card.wiki.moyashi.wikicards.http.RxAndroid
 import com.card.wiki.moyashi.wikicards.preference.Preferences
 import com.lorentzos.flingswipe.SwipeFlingAdapterView
@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
             flingContainer.setFlingListener(this)
             /** クリック処理 **/
             flingContainer.setOnItemClickListener { itemPosition, dataObject ->
-                Log.d(TAG, "click")
                 val customTabs = CustomTabs(this, title)
                 customTabs.onWarmUp()
                 customTabs.onStartUp()
@@ -61,7 +60,6 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
         /** Countの呼び出し **/
         preferense = Preferences(this)
         pageCount = preferense.onGetCount()
-        Log.d(TAG, pageCount.toString())
 
         /** textViewにCountをセット **/
         holder = viewHolder()
@@ -105,15 +103,12 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
     override fun removeFirstObjectInAdapter() {
         pageCount++
         holder.pageCount?.setText(pageCount.toString())
-        Log.d(TAG, pageCount.toString())
         itemList.removeAt(0)
         idList?.removeAt(0)
         if (idList?.size == 0) {
             onHttpConnect(TITLE)
-            Log.d(TAG, "if")
         } else {
             onHttpConnect(idList?.first() as String)
-            Log.d(TAG, "else")
         }
     }
 
