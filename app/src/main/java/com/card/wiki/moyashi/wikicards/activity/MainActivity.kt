@@ -3,7 +3,10 @@ package com.card.wiki.moyashi.wikicards.activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.widget.DrawerLayout
 import android.util.Log
+import android.view.Gravity
+import android.view.View
 import android.widget.TextView
 import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
@@ -16,7 +19,7 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView
 import java.util.*
 
 @Suppress("CAST_NEVER_SUCCEEDS")
-class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener {
+class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener{
     lateinit private var holder : viewHolder
     lateinit var rx: RxAndroid
     lateinit var preferense : Preferences
@@ -53,6 +56,18 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
         }
     }
 
+    private fun DrawerSettings(){
+        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
+        val imgBtn = findViewById(R.id.navigation_button)
+        val navigationView = findViewById(R.id.navigation_view)
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navigationView)
+        imgBtn.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(view: View?) {
+                    drawer.openDrawer(navigationView)
+            }
+        })
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -70,6 +85,10 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
         //        val intent = Intent(this, LicenseActivity::class.java)
 //        startActivity(intent)
 
+        /** DrawerLayoutの設定 **/
+        DrawerSettings()
+
+        /** Wikiの概要を取得 **/
         onHttpConnect(TITLE)
     }
 

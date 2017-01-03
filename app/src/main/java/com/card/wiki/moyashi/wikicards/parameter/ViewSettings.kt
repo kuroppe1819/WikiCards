@@ -9,8 +9,8 @@ class ViewSettings() {
         Log.d(TAG, "titleLength : ${length}")
         var size = 32.0f
         when {
-            11 > length && length > 8 || 19 > length && length > 16 -> size = 28.0f
-            length >= 24 -> size = 24.0f
+            11 > length && length > 8 || 21 > length && length > 16 -> size = 28.0f
+            length >= 21 -> size = 24.0f
             13 > length && length > 10 && title.contains("(") == true -> size = 28.0f
         }
         return size
