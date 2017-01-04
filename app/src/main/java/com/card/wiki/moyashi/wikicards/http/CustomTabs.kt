@@ -1,6 +1,8 @@
 package com.card.wiki.moyashi.wikicards.http
 
 import android.app.Activity
+import android.app.PendingIntent
+import android.content.Intent
 
 import android.graphics.BitmapFactory
 
@@ -54,11 +56,12 @@ class CustomTabs(activity: Activity, url: String) : ServiceConnectionCallback {
         if (!ok) mConnection = null
     }
 
-    fun unbindCustomTabsService() {
-        if (mConnection == null) return
-        activity.unbindService(mConnection)
-        mClient = null
-        mSession = null
+    private fun SettingShareIntent() : PendingIntent{
+        val intent = Intent(Intent.ACTION_SEND)
+                .setType("text/plain")
+                .putExtra(Intent.EXTRA_TEXT, url)
+
+        return PendingIntent.getActivity(activity, 0, intent, 0)
     }
 
     private fun getSession(): CustomTabsSession? {
@@ -66,6 +69,13 @@ class CustomTabs(activity: Activity, url: String) : ServiceConnectionCallback {
             mSession = mClient?.newSession(null)
         }
         return mSession
+    }
+
+    fun unbindCustomTabsService() {
+        if (mConnection == null) return
+        activity.unbindService(mConnection)
+        mClient = null
+        mSession = null
     }
 
     fun onWarmUp() {
@@ -82,11 +92,12 @@ class CustomTabs(activity: Activity, url: String) : ServiceConnectionCallback {
         val builder = CustomTabsIntent.Builder(getSession())
         val customTabsIntent = builder.build()
 
-        builder.setToolbarColor(ContextCompat.getColor(activity, R.color.colorPrimaryDark)).setShowTitle(true)
-        builder.setStartAnimations(activity, R.anim.slide_in_right, R.anim.slide_out_left)
-        builder.setExitAnimations(activity, R.anim.slide_in_left, R.anim.slide_out_right)
+        builder.setToolbarColor(ContextCompat.getColor(activity, R.color.DarkGray)).setShowTitle(true)
         builder.setCloseButtonIcon(
                 BitmapFactory.decodeResource(activity.resources, R.drawable.ic_arrow_back))
+        builder.addDefaultShareMenuItem()
+        builder.setActionButton(
+                BitmapFactory.decodeResource(activity.resources, R.drawable.ic_share), "share", SettingShareIntent())
 
         customTabsIntent.intent.setPackage(mPackageName)
         CustomTabsHelper.addKeepAliveExtra(activity, customTabsIntent.intent)
