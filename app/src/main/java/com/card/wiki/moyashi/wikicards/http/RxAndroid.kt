@@ -1,15 +1,11 @@
 package com.card.wiki.moyashi.wikicards.http
 
-import android.app.Activity
 import android.util.Log
-import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
 import com.card.wiki.moyashi.wikicards.parameter.ItemData
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Element
 import rx.Observable
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
@@ -18,9 +14,8 @@ import java.io.IOException
 import java.util.*
 
 class RxAndroid() : Subscriber<Response>() {
-    lateinit var id: String
-    lateinit var title: String
-    lateinit var article: String
+    lateinit var type: String
+    lateinit var cardList: ArrayList<ItemData>
     var onRxCallback: RxCallbacks? = null
 
     fun setCallback(onRxCallback: RxCallbacks) {
@@ -32,14 +27,13 @@ class RxAndroid() : Subscriber<Response>() {
         for (i in 0..items.length() - 1) {
             arrayList.add(items.getJSONObject(i).get("id").toString())
         }
+        arrayList.forEach { Log.d(TAG, it) }
         return arrayList
     }
 
     private fun toPageidParameter(): String {
         val idParam = StringBuilder()
-        for (i in 0..idList!!.size - 1) {
-            idParam.append("|${idList!!.get(i)}")
-        }
+        idList!!.forEach { idParam.append("|${it}") }
         return idParam.toString()
     }
 
@@ -52,7 +46,7 @@ class RxAndroid() : Subscriber<Response>() {
                 .addQueryParameter("format", "json")
                 .addQueryParameter("action", "query")
 
-        when (id) {
+        when (type) {
             "title" -> {
                 httpUri = builder.addQueryParameter("list", "random")
                         .addQueryParameter("titles", "&utf8")
@@ -73,8 +67,8 @@ class RxAndroid() : Subscriber<Response>() {
         return httpUri
     }
 
-    fun onHttpConnect(id: String) {
-        this.id = id
+    fun onHttpConnect(type: String) {
+        this.type = type
         Observable
                 .create(Observable.OnSubscribe<Response> { subscriber ->
                     try {
@@ -104,13 +98,10 @@ class RxAndroid() : Subscriber<Response>() {
 
     override fun onCompleted() {
         Log.d(TAG, "onCompleted")
-        when (id) {
-            "title" -> onRxCallback?.getTitleCompleted(idList!!)
+        when (type) {
+            "title" -> onRxCallback?.getTitleCompleted(idList!!.size)
             else -> {
-                val itemData = ItemData()
-                itemData.titleText = title
-                itemData.articleText = article
-                onRxCallback?.getArticleCompleted(itemData)
+                onRxCallback?.getArticleCompleted(cardList)
             }
         }
     }
@@ -121,15 +112,21 @@ class RxAndroid() : Subscriber<Response>() {
 
     override fun onNext(response: Response) {
         val responseJson = JSONObject(response.body().string())
-        when (id) {
+        when (type) {
             "title" -> idList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
             else -> {
+                cardList = ArrayList<ItemData>()
+
                 val pageData = responseJson
                         .getJSONObject("query")
                         .getJSONObject("pages")
-                        .getJSONObject(id)
-                title = pageData.get("title").toString()
-                article = pageData.get("extract").toString()
+
+                idList!!.forEach {
+                    val itemData = ItemData()
+                    itemData.titleText = pageData.getJSONObject(it).get("title").toString()
+                    itemData.articleText = pageData.getJSONObject(it).get("extract").toString()
+                    cardList.add(itemData)
+                }
             }
         }
     }

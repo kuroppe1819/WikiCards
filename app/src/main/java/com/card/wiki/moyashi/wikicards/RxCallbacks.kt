@@ -4,6 +4,6 @@ import com.card.wiki.moyashi.wikicards.parameter.ItemData
 import java.util.*
 
 interface RxCallbacks {
-    fun getTitleCompleted(idList: ArrayList<String>)
-    fun getArticleCompleted(itemData: ItemData)
+    fun getTitleCompleted(idListSize: Int)
+    fun getArticleCompleted(cardList: ArrayList<ItemData>)
 }

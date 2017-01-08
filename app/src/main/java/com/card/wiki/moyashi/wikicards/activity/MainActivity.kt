@@ -1,5 +1,6 @@
 package com.card.wiki.moyashi.wikicards.activity
 
+import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -19,19 +20,20 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView
 import java.util.*
 
 @Suppress("CAST_NEVER_SUCCEEDS")
-class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener{
-    lateinit private var holder : viewHolder
-    lateinit var preferense : Preferences
+class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener {
+    lateinit private var holder: viewHolder
+    lateinit var preferense: Preferences
+    lateinit var rx: RxAndroid
     private var idList: ArrayList<String>? = null
     private var cardsAdapter: CardsAdapter? = null
     private val itemList = ArrayList<ItemData>()
     private var title: String = ""
     private var pageCount: Long = 0
 
-    private fun onHttpConnect(id: String) {
-        val rx = RxAndroid()
+    private fun onHttpConnect(type: String) {
+        rx = RxAndroid()
         rx.setCallback(this)
-        rx.onHttpConnect(id)
+        rx.onHttpConnect(type)
     }
 
     private fun SwipeAdapterSettings(itemData: ItemData) {
@@ -50,8 +52,8 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
                 customTabs.onWarmUp()
                 customTabs.onStartUp()
             }
-            idList?.removeAt(0)
-            onHttpConnect(idList?.first() as String)
+//            idList?.removeAt(0)
+//            onHttpConnect(idList?.first() as String)
         }
     }
 
@@ -76,15 +78,14 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
         onHttpConnect(TITLE)
     }
 
-    override fun getTitleCompleted(idList: ArrayList<String>) {
-        this.idList = idList
-        idList.forEach { Log.d(TAG, it) }
-        onHttpConnect(idList.first())
+    override fun getTitleCompleted(idListSize: Int) {
+        onHttpConnect("article")
     }
 
-    override fun getArticleCompleted(itemData: ItemData) {
-        Log.d(TAG, "${itemData.titleText}: ${itemData.articleText}")
-        SwipeAdapterSettings(itemData)
+    override fun getArticleCompleted(cardList: ArrayList<ItemData>) {
+        Log.d(TAG, cardList.size.toString())
+
+        SwipeAdapterSettings(ItemData())
     }
 
     override fun onRightCardExit(p0: Any?) {
