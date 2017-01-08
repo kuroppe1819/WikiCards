@@ -18,52 +18,13 @@ import java.io.IOException
 import java.util.*
 
 class RxAndroid() : Subscriber<Response>() {
-    lateinit var idList: ArrayList<String>
     lateinit var id: String
     lateinit var title: String
     lateinit var article: String
     var onRxCallback: RxCallbacks? = null
 
-//    init {
-//        this.onRxCallback = onRxCallback
-//    }
-
     fun setCallback(onRxCallback: RxCallbacks) {
         this.onRxCallback = onRxCallback
-    }
-
-    private fun SettingBuilder(): HttpUrl {
-        val httpUri: HttpUrl
-        when (id) {
-            "title" -> {
-                httpUri = HttpUrl.Builder()
-                        .scheme("https")
-                        .host("ja.wikipedia.org")
-                        .addPathSegments("w/api.php")
-                        .addQueryParameter("format", "json")
-                        .addQueryParameter("action", "query")
-                        .addQueryParameter("list", "random")
-                        .addQueryParameter("titles", "&utf8")
-                        .addQueryParameter("rnnamespace", "0")
-                        .addQueryParameter("rnlimit", "25")
-                        .build()
-            }
-            else -> {
-                httpUri = HttpUrl.Builder()
-                        .scheme("https")
-                        .host("ja.wikipedia.org")
-                        .addPathSegments("w/api.php")
-                        .addQueryParameter("format", "json")
-                        .addQueryParameter("action", "query")
-                        .addQueryParameter("prop", "extracts")
-                        .addEncodedQueryParameter("exintro", "")
-                        .addEncodedQueryParameter("explaintext", "")
-                        .addQueryParameter("pageids", id)
-                        .addEncodedQueryParameter("utf8", "")
-                        .build()
-            }
-        }
-        return httpUri
     }
 
     private fun toArrayList(items: JSONArray): ArrayList<String> {
@@ -72,6 +33,44 @@ class RxAndroid() : Subscriber<Response>() {
             arrayList.add(items.getJSONObject(i).get("id").toString())
         }
         return arrayList
+    }
+
+    private fun toPageidParameter(): String {
+        val idParam = StringBuilder()
+        for (i in 0..idList!!.size - 1) {
+            idParam.append("|${idList!!.get(i)}")
+        }
+        return idParam.toString()
+    }
+
+    private fun SettingBuilder(): HttpUrl {
+        val httpUri: HttpUrl
+        val builder = HttpUrl.Builder()
+                .scheme("https")
+                .host("ja.wikipedia.org")
+                .addPathSegments("w/api.php")
+                .addQueryParameter("format", "json")
+                .addQueryParameter("action", "query")
+
+        when (id) {
+            "title" -> {
+                httpUri = builder.addQueryParameter("list", "random")
+                        .addQueryParameter("titles", "&utf8")
+                        .addQueryParameter("rnnamespace", "0")
+                        .addQueryParameter("rnlimit", "20")
+                        .build()
+            }
+            else -> {
+                httpUri = builder.addQueryParameter("prop", "extracts")
+                        .addQueryParameter("exlimit", "max")
+                        .addQueryParameter("exintro", "")
+                        .addQueryParameter("explaintext", "")
+                        .addQueryParameter("utf8", "")
+                        .addQueryParameter("pageids", toPageidParameter())
+                        .build()
+            }
+        }
+        return httpUri
     }
 
     fun onHttpConnect(id: String) {
@@ -106,7 +105,7 @@ class RxAndroid() : Subscriber<Response>() {
     override fun onCompleted() {
         Log.d(TAG, "onCompleted")
         when (id) {
-            "title" -> onRxCallback?.getTitleCompleted(idList)
+            "title" -> onRxCallback?.getTitleCompleted(idList!!)
             else -> {
                 val itemData = ItemData()
                 itemData.titleText = title
@@ -137,6 +136,7 @@ class RxAndroid() : Subscriber<Response>() {
 
     companion object {
         private val TAG = "RxAndroid"
+        private var idList: ArrayList<String>? = null
         private val ERRORMESSAGE = "しばらく時間がたってから再接続してください"
     }
 }
