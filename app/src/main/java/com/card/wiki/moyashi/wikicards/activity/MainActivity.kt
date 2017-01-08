@@ -21,7 +21,6 @@ import java.util.*
 @Suppress("CAST_NEVER_SUCCEEDS")
 class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener{
     lateinit private var holder : viewHolder
-    lateinit var rx: RxAndroid
     lateinit var preferense : Preferences
     private var idList: ArrayList<String>? = null
     private var cardsAdapter: CardsAdapter? = null
@@ -30,7 +29,7 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
     private var pageCount: Long = 0
 
     private fun onHttpConnect(id: String) {
-        rx = RxAndroid()
+        val rx = RxAndroid()
         rx.setCallback(this)
         rx.onHttpConnect(id)
     }
@@ -56,18 +55,6 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
         }
     }
 
-    private fun DrawerSettings(){
-        val drawer = findViewById(R.id.drawer_layout) as DrawerLayout
-        val imgBtn = findViewById(R.id.navigation_button)
-        val navigationView = findViewById(R.id.navigation_view)
-        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED, navigationView)
-        imgBtn.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(view: View?) {
-                    drawer.openDrawer(navigationView)
-            }
-        })
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -84,9 +71,6 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
         /** LicenseActivityに遷移 **/
         //        val intent = Intent(this, LicenseActivity::class.java)
 //        startActivity(intent)
-
-        /** DrawerLayoutの設定 **/
-        DrawerSettings()
 
         /** Wikiの概要を取得 **/
         onHttpConnect(TITLE)

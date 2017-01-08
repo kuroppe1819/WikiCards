@@ -32,7 +32,7 @@ class RxAndroid() : Subscriber<Response>() {
         this.onRxCallback = onRxCallback
     }
 
-    private fun SettingBuilder(id: String): HttpUrl {
+    private fun SettingBuilder(): HttpUrl {
         val httpUri: HttpUrl
         when (id) {
             "title" -> {
@@ -79,7 +79,7 @@ class RxAndroid() : Subscriber<Response>() {
         Observable
                 .create(Observable.OnSubscribe<Response> { subscriber ->
                     try {
-                        val wikiUrl = SettingBuilder(id)
+                        val wikiUrl = SettingBuilder()
                         Log.d(TAG, wikiUrl.toString())
 
                         val request = Request.Builder()

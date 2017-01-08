@@ -7,16 +7,16 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_centerInParent="true">
-        <ImageButton
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:id="@+id/navigation_button"
-            android:layout_marginLeft="7dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_menu"
-            android:background="@null"/>
+        <!--<ImageButton-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:id="@+id/navigation_button"-->
+            <!--android:layout_marginRight="7dp"-->
+            <!--android:scaleType="fitCenter"-->
+            <!--android:src="@drawable/ic_menu"-->
+            <!--android:background="@null"/>-->
     </RelativeLayout>
 
     <LinearLayout

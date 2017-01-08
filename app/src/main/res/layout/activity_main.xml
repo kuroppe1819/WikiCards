@@ -8,8 +8,6 @@
     android:fitsSystemWindows="true"
     tools:context="com.card.wiki.moyashi.wikicards.activity.MainActivity">
 
-    <include layout="@layout/navigation_view"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
