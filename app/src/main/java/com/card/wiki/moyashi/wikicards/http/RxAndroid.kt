@@ -113,7 +113,10 @@ class RxAndroid() : Subscriber<Response>() {
     override fun onNext(response: Response) {
         val responseJson = JSONObject(response.body().string())
         when (type) {
-            "title" -> idList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
+            "title" -> {
+                idList?.clear()
+                idList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
+            }
             else -> {
                 itemList = ArrayList<ItemData>()
 
