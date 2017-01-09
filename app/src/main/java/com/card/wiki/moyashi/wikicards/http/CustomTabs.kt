@@ -98,6 +98,8 @@ class CustomTabs(activity: Activity, url: String) : ServiceConnectionCallback {
         builder.addDefaultShareMenuItem()
         builder.setActionButton(
                 BitmapFactory.decodeResource(activity.resources, R.drawable.ic_share), "share", SettingShareIntent())
+//        builder.setStartAnimations(activity.applicationContext, R.anim.slide_out_right, R.anim.slide_in_left)
+//        builder.setExitAnimations(activity, R.anim.slide_in_left, R.anim.slide_out_right)
 
         customTabsIntent.intent.setPackage(mPackageName)
         CustomTabsHelper.addKeepAliveExtra(activity, customTabsIntent.intent)

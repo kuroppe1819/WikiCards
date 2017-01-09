@@ -1,8 +1,10 @@
 package com.card.wiki.moyashi.wikicards.activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
@@ -15,7 +17,7 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView
 import java.util.*
 
 @Suppress("CAST_NEVER_SUCCEEDS")
-class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener {
+class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener, View.OnClickListener {
     lateinit private var holder: viewHolder
     lateinit var preferense: Preferences
     lateinit var rx: RxAndroid
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
     private var cardsAdapter: CardsAdapter? = null
     private var itemList = ArrayList<ItemData>()
     private var title: String = ""
-    private var pageCount: Long = 0
+    private var count: Long = 0
 
     private fun onHttpConnect(type: String) {
         rx = RxAndroid()
@@ -48,6 +50,16 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
             SwipeAdapterSettings()
         }
     }
+    
+    private fun countCheck(count : Long){
+        if (count == 9223372036854775807) this.count = 0
+    }
+
+    override fun onClick(p0: View?) {
+        /** LicenseActivityに遷移 **/
+        val intent = Intent(this, LicenseActivity::class.java)
+        startActivity(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,16 +67,12 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
 
         /** Countの呼び出し **/
         preferense = Preferences(this)
-        pageCount = preferense.onGetCount()
-
+        count = preferense.onGetCount()
         /** textViewにCountをセット **/
         holder = viewHolder()
-        holder.pageCount = findViewById(R.id.count_textview) as TextView
-        holder.pageCount?.setText(pageCount.toString())
-
-        /** LicenseActivityに遷移 **/
-        //        val intent = Intent(this, LicenseActivity::class.java)
-//        startActivity(intent)
+        holder.count = findViewById(R.id.count_textview) as TextView
+        holder.count?.setText(count.toString())
+        holder.count?.setOnClickListener(this)
 
         /** Wikiの概要を取得 **/
         onHttpConnect("title")
@@ -105,22 +113,22 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
 
     override fun removeFirstObjectInAdapter() {
         this.title = itemList.first().titleText
-        pageCount++
-        holder.pageCount?.setText(pageCount.toString())
+        count++
+        countCheck(count)
+        holder.count?.setText(count.toString())
         itemList.removeAt(0)
         cardsAdapter?.notifyDataSetChanged()
     }
 
     override fun onPause() {
         super.onPause()
-        preferense.onSaveCount(pageCount)
-        customTabs.unbindCustomTabsService()
+        preferense.onSaveCount(count)
     }
 
     companion object {
         private val TAG = "MainActivity"
         private class viewHolder() {
-            var pageCount: TextView? = null
+            var count: TextView? = null
         }
     }
 }
