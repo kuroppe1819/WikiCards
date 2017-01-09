@@ -6,7 +6,7 @@ class ViewSettings() {
 
     fun getViewSize(title: String): Float {
         val length = title.length
-        Log.d(TAG, "titleLength : ${length}")
+//        Log.d(TAG, "titleLength : ${length}")
         var size = 32.0f
         when {
             11 > length && length > 8 || 21 > length && length > 16 -> size = 28.0f
@@ -18,7 +18,7 @@ class ViewSettings() {
 
     fun getSubArticle(article: String): String {
         val length = article.length
-        Log.d(TAG, "articleLength : ${length}")
+//        Log.d(TAG, "articleLength : ${length}")
         when {
             length >= 195 -> {
                 return article.substring(0, 195) + "..."

@@ -21,7 +21,7 @@
             android:id="@+id/swipeAdapter"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:max_visible="3"
+            app:max_visible="2"
             app:min_adapter_stack="10"
             app:rotation_degrees="16" />
 

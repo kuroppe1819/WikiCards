@@ -1,13 +1,8 @@
 package com.card.wiki.moyashi.wikicards.activity
 
-import android.content.Context
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.widget.DrawerLayout
 import android.util.Log
-import android.view.Gravity
-import android.view.View
 import android.widget.TextView
 import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
@@ -24,9 +19,9 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
     lateinit private var holder: viewHolder
     lateinit var preferense: Preferences
     lateinit var rx: RxAndroid
-    private var idList: ArrayList<String>? = null
+    lateinit var customTabs : CustomTabs
     private var cardsAdapter: CardsAdapter? = null
-    private val itemList = ArrayList<ItemData>()
+    private var itemList = ArrayList<ItemData>()
     private var title: String = ""
     private var pageCount: Long = 0
 
@@ -36,11 +31,9 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
         rx.onHttpConnect(type)
     }
 
-    private fun SwipeAdapterSettings(itemData: ItemData) {
-        itemList.add(itemData)
+    private fun SwipeAdapterSettings() {
         if (cardsAdapter != null) {
             cardsAdapter?.notifyDataSetChanged()
-            this.title = itemList.get(0).titleText
         } else {
             val flingContainer = findViewById(R.id.swipeAdapter) as SwipeFlingAdapterView
             cardsAdapter = CardsAdapter(itemList, this)
@@ -52,8 +45,7 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
                 customTabs.onWarmUp()
                 customTabs.onStartUp()
             }
-//            idList?.removeAt(0)
-//            onHttpConnect(idList?.first() as String)
+            SwipeAdapterSettings()
         }
     }
 
@@ -75,21 +67,25 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
 //        startActivity(intent)
 
         /** Wikiの概要を取得 **/
-        onHttpConnect(TITLE)
+        onHttpConnect("title")
     }
 
-    override fun getTitleCompleted(idListSize: Int) {
+    override fun getTitleCompleted() {
         onHttpConnect("article")
     }
 
-    override fun getArticleCompleted(cardList: ArrayList<ItemData>) {
-        Log.d(TAG, cardList.size.toString())
-
-        SwipeAdapterSettings(ItemData())
+    override fun getArticleCompleted(itemList: ArrayList<ItemData>) {
+        itemList.forEach{
+            Log.d(TAG, it.titleText)
+            this.itemList.add(it)
+        }
+        SwipeAdapterSettings()
     }
 
     override fun onRightCardExit(p0: Any?) {
-
+        customTabs = CustomTabs(this, title)
+        customTabs.onWarmUp()
+        customTabs.onStartUp()
     }
 
     override fun onLeftCardExit(p0: Any?) {
@@ -100,31 +96,29 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
 
     }
 
-    override fun onAdapterAboutToEmpty(p0: Int) {
-
+    override fun onAdapterAboutToEmpty(stock: Int) {
+        Log.d(TAG, "Stock : ${stock}")
+        if (stock == 10) {
+            onHttpConnect("title")
+        }
     }
 
     override fun removeFirstObjectInAdapter() {
+        this.title = itemList.first().titleText
         pageCount++
         holder.pageCount?.setText(pageCount.toString())
         itemList.removeAt(0)
-        idList?.removeAt(0)
-        if (idList?.size == 0) {
-            onHttpConnect(TITLE)
-        } else {
-            onHttpConnect(idList?.first() as String)
-        }
+        cardsAdapter?.notifyDataSetChanged()
     }
 
     override fun onPause() {
         super.onPause()
         preferense.onSaveCount(pageCount)
+        customTabs.unbindCustomTabsService()
     }
 
     companion object {
         private val TAG = "MainActivity"
-        private val TITLE = "title"
-
         private class viewHolder() {
             var pageCount: TextView? = null
         }

@@ -15,7 +15,7 @@ import java.util.*
 
 class RxAndroid() : Subscriber<Response>() {
     lateinit var type: String
-    lateinit var cardList: ArrayList<ItemData>
+    lateinit var itemList: ArrayList<ItemData>
     var onRxCallback: RxCallbacks? = null
 
     fun setCallback(onRxCallback: RxCallbacks) {
@@ -99,9 +99,9 @@ class RxAndroid() : Subscriber<Response>() {
     override fun onCompleted() {
         Log.d(TAG, "onCompleted")
         when (type) {
-            "title" -> onRxCallback?.getTitleCompleted(idList!!.size)
+            "title" -> onRxCallback?.getTitleCompleted()
             else -> {
-                onRxCallback?.getArticleCompleted(cardList)
+                onRxCallback?.getArticleCompleted(itemList)
             }
         }
     }
@@ -115,7 +115,7 @@ class RxAndroid() : Subscriber<Response>() {
         when (type) {
             "title" -> idList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
             else -> {
-                cardList = ArrayList<ItemData>()
+                itemList = ArrayList<ItemData>()
 
                 val pageData = responseJson
                         .getJSONObject("query")
@@ -125,7 +125,7 @@ class RxAndroid() : Subscriber<Response>() {
                     val itemData = ItemData()
                     itemData.titleText = pageData.getJSONObject(it).get("title").toString()
                     itemData.articleText = pageData.getJSONObject(it).get("extract").toString()
-                    cardList.add(itemData)
+                    itemList.add(itemData)
                 }
             }
         }
