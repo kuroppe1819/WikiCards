@@ -1,11 +1,8 @@
 package com.card.wiki.moyashi.wikicards.preference
 
 import android.app.Activity
-import android.content.ContentUris
 import android.content.Context
 import android.content.SharedPreferences
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 class Preferences(activity: Activity) {
     var preferences: SharedPreferences

@@ -111,15 +111,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\org.jsoup\jsoup\1.9.2\5e3bda828a80c7a21dfbe2308d1755759c2fd7b4\jsoup-1.9.2.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="5e3bda828a80c7a21dfbe2308d1755759c2fd7b4">
-        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\jsoup-1.9.2_5157769c64573b795def060fd3a36ce7769f9598\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -234,15 +225,6 @@
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_39781419eca1fe0f91fa714769c0c21cfa4d74a0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
-        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.4_c67852f503fb1e41eb7299094c4f1bb343050e12\classes.dex" />
     </item>
     <item
         is-multidex="true"
