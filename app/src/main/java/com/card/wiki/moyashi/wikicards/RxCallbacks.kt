@@ -6,4 +6,5 @@ import java.util.*
 interface RxCallbacks {
     fun getTitleCompleted()
     fun getArticleCompleted(itemList: ArrayList<ItemData>)
+    fun onHttpError()
 }

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
 import com.card.wiki.moyashi.wikicards.adapter.CardsAdapter
@@ -41,12 +42,6 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
             cardsAdapter = CardsAdapter(itemList, this)
             flingContainer.adapter = cardsAdapter
             flingContainer.setFlingListener(this)
-            /** クリック処理 **/
-            flingContainer.setOnItemClickListener { itemPosition, dataObject ->
-                val customTabs = CustomTabs(this, title)
-                customTabs.onWarmUp()
-                customTabs.onStartUp()
-            }
             SwipeAdapterSettings()
         }
     }
@@ -88,6 +83,10 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
             this.itemList.add(it)
         }
         SwipeAdapterSettings()
+    }
+
+    override fun onHttpError() {
+        Toast.makeText(this, R.string.http_error, Toast.LENGTH_LONG).show()
     }
 
     override fun onRightCardExit(p0: Any?) {

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WikiCards</string>
     <string name="max_number">5</string>
+    <string name="http_error">通信がタイムアウトしました。しばらくしてからもう一度お試しください</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.card.wiki.moyashi.wikicards.http
 
 import android.util.Log
+import android.widget.Toast
 import com.card.wiki.moyashi.wikicards.RxCallbacks
 import com.card.wiki.moyashi.wikicards.parameter.ItemData
 import okhttp3.*
@@ -108,6 +109,7 @@ class RxAndroid() : Subscriber<Response>() {
 
     override fun onError(e: Throwable) {
         Log.d(TAG, "onError: " + e)
+        onRxCallback?.onHttpError()
     }
 
     override fun onNext(response: Response) {

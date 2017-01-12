@@ -3,6 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'com.cookpad.android.licensetools'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'wikicards'
+            keyPassword 'tyoppa-1819'
+            storeFile file('C:/Users/atsusuke/AndroidKey/wikicards.jks')
+            storePassword 'tyoppa-1819'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
@@ -12,20 +20,24 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
     }
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+    productFlavors {
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -34,13 +46,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
     testCompile 'junit:junit:4.12'
     compile 'com.lorentzos.swipecards:library:1.0.9'
-    compile "com.android.support:cardview-v7:25.0.1"
+    compile 'com.android.support:cardview-v7:25.0.1'
     compile 'io.reactivex:rxjava:1.2.2'
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile project(':shared')
     compile project(':customtabs')
+    compile project(':shared')
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 repositories {
     mavenCentral()
