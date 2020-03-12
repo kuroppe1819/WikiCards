@@ -6,7 +6,7 @@
 
 ### WikiCards
 
-Gigazineの最新記事とお気に入りを表示するアプリ
+wikiの概要をTinder風に確認できるアプリ
 </div>
 
 <div align="center">
