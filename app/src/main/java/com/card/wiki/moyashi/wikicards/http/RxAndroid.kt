@@ -1,14 +1,12 @@
 package com.card.wiki.moyashi.wikicards.http
 
-import android.app.Activity
 import android.util.Log
-import com.card.wiki.moyashi.wikicards.R
+import android.widget.Toast
 import com.card.wiki.moyashi.wikicards.RxCallbacks
+import com.card.wiki.moyashi.wikicards.parameter.ItemData
 import okhttp3.*
 import org.json.JSONArray
 import org.json.JSONObject
-import org.jsoup.Jsoup
-import org.jsoup.nodes.Element
 import rx.Observable
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
@@ -17,52 +15,12 @@ import java.io.IOException
 import java.util.*
 
 class RxAndroid() : Subscriber<Response>() {
-    lateinit var idList: ArrayList<String>
-    lateinit var id: String
-    lateinit var title: String
-    lateinit var article: String
+    lateinit var type: String
+    lateinit var itemList: ArrayList<ItemData>
     var onRxCallback: RxCallbacks? = null
-
-//    init {
-//        this.onRxCallback = onRxCallback
-//    }
 
     fun setCallback(onRxCallback: RxCallbacks) {
         this.onRxCallback = onRxCallback
-    }
-
-    private fun SettingBuilder(id: String): HttpUrl {
-        val httpUri: HttpUrl
-        when (id) {
-            "title" -> {
-                httpUri = HttpUrl.Builder()
-                        .scheme("https")
-                        .host("ja.wikipedia.org")
-                        .addPathSegments("w/api.php")
-                        .addQueryParameter("format", "json")
-                        .addQueryParameter("action", "query")
-                        .addQueryParameter("list", "random")
-                        .addQueryParameter("titles", "&utf8")
-                        .addQueryParameter("rnnamespace", "0")
-                        .addQueryParameter("rnlimit", "25")
-                        .build()
-            }
-            else -> {
-                httpUri = HttpUrl.Builder()
-                        .scheme("https")
-                        .host("ja.wikipedia.org")
-                        .addPathSegments("w/api.php")
-                        .addQueryParameter("format", "json")
-                        .addQueryParameter("action", "query")
-                        .addQueryParameter("prop", "extracts")
-                        .addEncodedQueryParameter("exintro", "")
-                        .addEncodedQueryParameter("explaintext", "")
-                        .addQueryParameter("pageids", id)
-                        .addEncodedQueryParameter("utf8", "")
-                        .build()
-            }
-        }
-        return httpUri
     }
 
     private fun toArrayList(items: JSONArray): ArrayList<String> {
@@ -70,15 +28,52 @@ class RxAndroid() : Subscriber<Response>() {
         for (i in 0..items.length() - 1) {
             arrayList.add(items.getJSONObject(i).get("id").toString())
         }
+        arrayList.forEach { Log.d(TAG, it) }
         return arrayList
     }
 
-    fun onHttpConnect(id: String) {
-        this.id = id
+    private fun toPageidParameter(): String {
+        val idParam = StringBuilder()
+        idList!!.forEach { idParam.append("|${it}") }
+        return idParam.toString()
+    }
+
+    private fun SettingBuilder(): HttpUrl {
+        val httpUri: HttpUrl
+        val builder = HttpUrl.Builder()
+                .scheme("https")
+                .host("ja.wikipedia.org")
+                .addPathSegments("w/api.php")
+                .addQueryParameter("format", "json")
+                .addQueryParameter("action", "query")
+
+        when (type) {
+            "title" -> {
+                httpUri = builder.addQueryParameter("list", "random")
+                        .addQueryParameter("titles", "&utf8")
+                        .addQueryParameter("rnnamespace", "0")
+                        .addQueryParameter("rnlimit", "20")
+                        .build()
+            }
+            else -> {
+                httpUri = builder.addQueryParameter("prop", "extracts")
+                        .addQueryParameter("exlimit", "max")
+                        .addQueryParameter("exintro", "")
+                        .addQueryParameter("explaintext", "")
+                        .addQueryParameter("utf8", "")
+                        .addQueryParameter("pageids", toPageidParameter())
+                        .build()
+            }
+        }
+        return httpUri
+    }
+
+    fun onHttpConnect(type: String) {
+        this.type = type
         Observable
                 .create(Observable.OnSubscribe<Response> { subscriber ->
                     try {
-                        val wikiUrl = SettingBuilder(id)
+                        val wikiUrl = SettingBuilder()
                         Log.d(TAG, wikiUrl.toString())
 
                         val request = Request.Builder()
@@ -104,38 +99,46 @@ class RxAndroid() : Subscriber<Response>() {
 
     override fun onCompleted() {
         Log.d(TAG, "onCompleted")
-        when (id) {
-            "title" -> onRxCallback?.getTitleCompleted(idList)
+        when (type) {
+            "title" -> onRxCallback?.getTitleCompleted()
             else -> {
-                val itemData = ItemData()
-                itemData.titleText = title
-                itemData.articleText = article
-                onRxCallback?.getArticleCompleted(itemData)
+                onRxCallback?.getArticleCompleted(itemList)
             }
         }
     }
 
     override fun onError(e: Throwable) {
         Log.d(TAG, "onError: " + e)
+        onRxCallback?.onHttpError()
     }
 
     override fun onNext(response: Response) {
         val responseJson = JSONObject(response.body().string())
-        when (id) {
-            "title" -> idList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
+        when (type) {
+            "title" -> {
+                idList?.clear()
+                idList = toArrayList(responseJson.getJSONObject("query").getJSONArray("random"))
+            }
             else -> {
+                itemList = ArrayList<ItemData>()
+
                 val pageData = responseJson
                         .getJSONObject("query")
                         .getJSONObject("pages")
-                        .getJSONObject(id)
-                title = pageData.get("title").toString()
-                article = pageData.get("extract").toString()
+
+                idList!!.forEach {
+                    val itemData = ItemData()
+                    itemData.titleText = pageData.getJSONObject(it).get("title").toString()
+                    itemData.articleText = pageData.getJSONObject(it).get("extract").toString()
+                    itemList.add(itemData)
+                }
             }
         }
     }
 
     companion object {
         private val TAG = "RxAndroid"
+        private var idList: ArrayList<String>? = null
         private val ERRORMESSAGE = "しばらく時間がたってから再接続してください"
     }
 }

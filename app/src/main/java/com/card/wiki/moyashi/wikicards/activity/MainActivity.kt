@@ -4,78 +4,95 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import com.card.wiki.moyashi.wikicards.R
 import com.card.wiki.moyashi.wikicards.RxCallbacks
 import com.card.wiki.moyashi.wikicards.adapter.CardsAdapter
 import com.card.wiki.moyashi.wikicards.http.CustomTabs
-import com.card.wiki.moyashi.wikicards.http.ItemData
+import com.card.wiki.moyashi.wikicards.parameter.ItemData
 import com.card.wiki.moyashi.wikicards.http.RxAndroid
+import com.card.wiki.moyashi.wikicards.preference.Preferences
 import com.lorentzos.flingswipe.SwipeFlingAdapterView
 import java.util.*
 
 @Suppress("CAST_NEVER_SUCCEEDS")
-class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener {
+class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onFlingListener, View.OnClickListener {
+    lateinit private var holder: viewHolder
+    lateinit var preferense: Preferences
     lateinit var rx: RxAndroid
-    private var idList: ArrayList<String>? = null
+    lateinit var customTabs : CustomTabs
     private var cardsAdapter: CardsAdapter? = null
-    private val itemList = ArrayList<ItemData>()
+    private var itemList = ArrayList<ItemData>()
     private var title: String = ""
-    private var count = 0
+    private var count: Long = 0
 
-    private fun onHttpConnect(id: String) {
+    private fun onHttpConnect(type: String) {
         rx = RxAndroid()
         rx.setCallback(this)
-        rx.onHttpConnect(id)
+        rx.onHttpConnect(type)
     }
 
-    private fun SwipeAdapterSettings(itemData: ItemData) {
-        itemList.add(itemData)
+    private fun SwipeAdapterSettings() {
         if (cardsAdapter != null) {
             cardsAdapter?.notifyDataSetChanged()
-            this.title = itemList.get(0).titleText
         } else {
             val flingContainer = findViewById(R.id.swipeAdapter) as SwipeFlingAdapterView
             cardsAdapter = CardsAdapter(itemList, this)
             flingContainer.adapter = cardsAdapter
             flingContainer.setFlingListener(this)
-            /** クリック処理 **/
-            flingContainer.setOnItemClickListener { itemPosition, dataObject ->
-                Log.d(TAG, "click")
-                val customTabs = CustomTabs(this, title)
-                customTabs.onWarmUp()
-                customTabs.onStartUp()
-            }
-            count++
-            onHttpConnect(idList?.get(count) as String)
+            SwipeAdapterSettings()
         }
+    }
+    
+    private fun countCheck(count : Long){
+        if (count == 9223372036854775807) this.count = 0
+    }
+
+    override fun onClick(p0: View?) {
+        /** LicenseActivityに遷移 **/
+        val intent = Intent(this, LicenseActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /** LicenseActivityに遷移 **/
-        //        val intent = Intent(this, LicenseActivity::class.java)
-//        startActivity(intent)
+        /** Countの呼び出し **/
+        preferense = Preferences(this)
+        count = preferense.onGetCount()
+        /** textViewにCountをセット **/
+        holder = viewHolder()
+        holder.count = findViewById(R.id.count_textview) as TextView
+        holder.count?.setText(count.toString())
+        holder.count?.setOnClickListener(this)
 
-        onHttpConnect(TITLE)
+        /** Wikiの概要を取得 **/
+        onHttpConnect("title")
     }
 
-    override fun getTitleCompleted(idList: ArrayList<String>) {
-        this.idList = idList
-        idList.forEach { Log.d(TAG, it) }
-        onHttpConnect(idList.get(count))
+    override fun getTitleCompleted() {
+        onHttpConnect("article")
     }
 
-    override fun getArticleCompleted(itemData: ItemData) {
-        Log.d(TAG, "${itemData.titleText}: ${itemData.articleText}")
-        SwipeAdapterSettings(itemData)
+    override fun getArticleCompleted(itemList: ArrayList<ItemData>) {
+        itemList.forEach{
+            Log.d(TAG, it.titleText)
+            this.itemList.add(it)
+        }
+        SwipeAdapterSettings()
+    }
+
+    override fun onHttpError() {
+        Toast.makeText(this, R.string.http_error, Toast.LENGTH_LONG).show()
     }
 
     override fun onRightCardExit(p0: Any?) {
-//        val customTabs = CustomTabs(this, title)
-//        customTabs.onWarmUp()
-//        customTabs.onStartUp()
+        customTabs = CustomTabs(this, title)
+        customTabs.onWarmUp()
+        customTabs.onStartUp()
     }
 
     override fun onLeftCardExit(p0: Any?) {
@@ -86,26 +103,31 @@ class MainActivity : AppCompatActivity(), RxCallbacks, SwipeFlingAdapterView.onF
 
     }
 
-    override fun onAdapterAboutToEmpty(p0: Int) {
-
+    override fun onAdapterAboutToEmpty(stock: Int) {
+        Log.d(TAG, "Stock : ${stock}")
+        if (stock == 10) {
+            onHttpConnect("title")
+        }
     }
 
     override fun removeFirstObjectInAdapter() {
-        itemList.removeAt(0)
+        this.title = itemList.first().titleText
         count++
-        Log.d(TAG, count.toString())
-        if (count + 1 == idList?.size) {
-            count = 0
-            onHttpConnect(TITLE)
-            Log.d(TAG, "if")
-        } else {
-            onHttpConnect(idList?.get(count) as String)
-            Log.d(TAG, "else")
-        }
+        countCheck(count)
+        holder.count?.setText(count.toString())
+        itemList.removeAt(0)
+        cardsAdapter?.notifyDataSetChanged()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        preferense.onSaveCount(count)
     }
 
     companion object {
         private val TAG = "MainActivity"
-        private val TITLE = "title"
+        private class viewHolder() {
+            var count: TextView? = null
+        }
     }
 }

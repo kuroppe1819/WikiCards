@@ -7,7 +7,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="ad8c05da488811ffb88b8a763bd1c968e7f6ccde">
+        sha1="f6fadb872cddf1f8f0cfd09c2c5ccdc328610786">
         <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_82e3f126ecb19eb6420fdeb8a12f257803f66646\classes.dex" />
     </item>
     <item
@@ -34,7 +34,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="cc75416d6fdd54ab029b179aaed892c520fe776c">
+        sha1="9068e2d4ffea7d3e285b1f98be72562beaa98483">
         <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_c825ed6b58370dc0169c767b99e3521ab67480a8\classes.dex" />
     </item>
     <item
@@ -102,12 +102,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\org.jsoup\jsoup\1.9.2\5e3bda828a80c7a21dfbe2308d1755759c2fd7b4\jsoup-1.9.2.jar"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\25.0.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="5e3bda828a80c7a21dfbe2308d1755759c2fd7b4">
-        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\jsoup-1.9.2_5157769c64573b795def060fd3a36ce7769f9598\classes.dex" />
+        sha1="297d4bcf6ed4e747a1bf7d0d094a2d911a8d3a8e">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-25.0.1_8a39bdc8d72f1853f91c778d74c790701ae23145\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -192,6 +192,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\design\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="3b236883e0df6002cabb01ce57d00a5b1e5de610">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-25.0.1_16ab1f64cc86970e4832a939f858ca0534a1f706\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\transition\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c1b6ab157e8e12cb08b9ee82bb5e3c5d22632eb3">
+        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-transition-25.0.1_9d3081824442d13573f1496b816302ab821ff32a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
         jumboMode="true"
         optimize="true"
@@ -207,15 +225,6 @@
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_39781419eca1fe0f91fa714769c0c21cfa4d74a0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\atsusuke\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.4\695b63d702f505b9b916e02272e3b6381bade7f\gson-2.4.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0695b63d702f505b9b916e02272e3b6381bade7f">
-        <dex dex="C:\Users\atsusuke\AndroidStudioProjects\WikiCards\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.4_c67852f503fb1e41eb7299094c4f1bb343050e12\classes.dex" />
     </item>
     <item
         is-multidex="true"

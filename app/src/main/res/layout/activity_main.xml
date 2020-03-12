@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.card.wiki.moyashi.wikicards.activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
+
+        <include layout="@layout/count_header" />
+
+        <com.lorentzos.flingswipe.SwipeFlingAdapterView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/swipeAdapter"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:max_visible="2"
+            app:min_adapter_stack="10"
+            app:rotation_degrees="16" />
 
     </LinearLayout>
 
-    <com.lorentzos.flingswipe.SwipeFlingAdapterView
-        android:id="@+id/swipeAdapter"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:rotation_degrees="16"
-        app:max_visible="3"
-        app:min_adapter_stack="10" />
-
-</RelativeLayout>
+</android.support.v4.widget.DrawerLayout>
