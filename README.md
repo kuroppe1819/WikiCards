@@ -10,7 +10,7 @@ wikiの概要をTinder風に確認できるアプリ
 </div>
 
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/17245737/76565406-dd3cd680-64ed-11ea-87f1-cbff9125c684.png" width="240px">　　　　<img src="https://user-images.githubusercontent.com/17245737/76565412-df069a00-64ed-11ea-838e-8d85ada66663.png" width="240px">
+  <img src="https://user-images.githubusercontent.com/17245737/76565406-dd3cd680-64ed-11ea-87f1-cbff9125c684.png" width="240px">　　　　<img src="https://user-images.githubusercontent.com/17245737/76565412-df069a00-64ed-11ea-838e-8d85ada66663.png" width="240px">　　　　<img src="https://user-images.githubusercontent.com/17245737/76680288-9b657a80-662a-11ea-8a18-00f16226fbf1.png" width="240px">
 </div>
 
 ## Feature
